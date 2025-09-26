@@ -3,6 +3,40 @@ import "./projects.scss"
 
 const projectsData = [
   {
+    "name": "LaTeX Resume Builder – devcv.xyz",
+    "url": "https://github.com/amoddhopavkar2/devcv.xyz",
+    "description": [
+      "Engineered a live-preview LaTeX résumé builder built with React, Node.js, and TypeScript that provides real-time preview functionality and auto-saves user changes in under 200ms.",
+      "Successfully processes and exports over 500 PDFs monthly, serving thousands of users with professional resume generation capabilities and seamless user experience.",
+    ],
+    "githubUrl": "https://github.com/amoddhopavkar2/devcv.xyz",
+    "used": [
+      {"thing": "React"},
+      {"thing": "Node.js"},
+      {"thing": "TypeScript"},
+      {"thing": "LaTeX"},
+      {"thing": "PDF Generation"},
+      {"thing": "Real-time Preview"},
+    ]
+  },
+  {
+    "name": "LeetCode PowerUp – Chrome Extension",
+    "url": "https://github.com/amoddhopavkar2/leetcode-powerup",
+    "description": [
+      "Developed a Chrome extension that enhances LeetCode problem-solving experience by injecting YouTube top solutions and providing a persistent scratchpad directly into LeetCode pages.",
+      "Serves over 5,000 active users and saves an average of 2 minutes per problem, significantly improving coding interview preparation efficiency and user productivity.",
+    ],
+    "githubUrl": "https://github.com/amoddhopavkar2/leetcode-powerup",
+    "used": [
+      {"thing": "Chrome Extension"},
+      {"thing": "JavaScript"},
+      {"thing": "DOM Manipulation"},
+      {"thing": "YouTube API"},
+      {"thing": "Browser Storage"},
+      {"thing": "Content Scripts"},
+    ]
+  },
+  {
     "name": "Kitchen Chronicles",
     "url": "https://amoddhopavkar-kitchenchronicles.netlify.app/search",
     "description": [
