@@ -1,20 +1,20 @@
 @import "src/scss/globals";
 :root {
-  --bg-color: #ffffff;
-  --text-color: #333333;
-  --link-color: #007bff;
-  --bullet-color: #007bff;
-  --tag-bg-color: #f8f9fa;
-  --tag-text-color: #6c757d;
+  --bg-color: #{$bg-light};
+  --text-color: #{$text-body-light};
+  --link-color: #{$accent-primary};
+  --bullet-color: #{$accent-primary};
+  --tag-bg-color: #{$bg-light-secondary};
+  --tag-text-color: #{$text-muted-light};
 }
 
 body.night {
-  --bg-color: #1a1a1a;
-  --text-color: #e0e0e0;
-  --link-color: #4da3ff;
-  --bullet-color: #4da3ff;
-  --tag-bg-color: #2a2a2a;
-  --tag-text-color: #b0b0b0;
+  --bg-color: #{$bg-primary};
+  --text-color: #{$text-body-dark};
+  --link-color: #{$accent-hover};
+  --bullet-color: #{$accent-hover};
+  --tag-bg-color: #{$bg-secondary};
+  --tag-text-color: #{$text-muted-dark};
 }
 
 .other-projects {
@@ -23,8 +23,7 @@ body.night {
     margin-bottom: 30px;
 
     &__name {
-      /* Set the specific color for project titles in light mode */
-      color: #36363c; 
+      color: $text-primary-light;
       margin-bottom: 10px;
       font-size: 24px;
       font-weight: 700;
@@ -76,10 +75,10 @@ body.night {
   }
 }
 
-// Ensure dark mode colors are kept unchanged
+// Dark mode overrides
 body.night {
   .other-projects .project__name {
-    color: var(--text-color); /* Keep the dark mode color unchanged */
+    color: $text-primary-dark;
   }
 
   .other-projects a {

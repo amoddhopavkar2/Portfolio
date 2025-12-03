@@ -1,18 +1,63 @@
-// Colors
-$night: #171c28;
-$black: #36363c;
-$dark-grey: #444452;
-$grey: #777777;
-$blue: #007bff;
-$slate: #afafbf;
-$off-white: #e7e7e7;
-$white: #ffffff;
-$green: #bae67e;
-$purple: #7d0ce8;
-$red: #ff0000;
-$orange: #e8850c;
-$yellow: #ffdc00;
-$accent: #ffcc66;
+// Colors - Modern Indigo Theme
+
+// Dark Mode Backgrounds
+$bg-primary: #0f0f1a;
+$bg-secondary: #16162a;
+$bg-tertiary: #1e1e3a;
+
+// Light Mode Backgrounds
+$bg-light: #fafbfc;
+$bg-light-secondary: #f0f2f5;
+
+// Text Colors - Dark Mode
+$text-primary-dark: #f0f0f5;
+$text-body-dark: #b8b8d0;
+$text-muted-dark: #7878a0;
+
+// Text Colors - Light Mode
+$text-primary-light: #1a1a2e;
+$text-body-light: #4a4a5a;
+$text-muted-light: #6c6c8a;
+
+// Accent Colors (Indigo)
+$accent-primary: #6366f1;
+$accent-hover: #818cf8;
+$accent-light: #a5b4fc;
+$accent-glow: rgba(99, 102, 241, 0.15);
+
+// Semantic Colors
+$success: #34d399;
+$warning: #fbbf24;
+$error: #f87171;
+$info: #22d3ee;
+
+// Borders
+$border-dark: #2a2a4a;
+$border-light: #e2e4e8;
+
+// Selection
+$selection-bg: #6366f1;
+$selection-text: #ffffff;
+
+// Toggle Switch
+$toggle-active: #6366f1;
+$toggle-inactive: #4a4a6a;
+
+// Legacy mappings (for backward compatibility with existing components)
+$night: $bg-primary;
+$black: $text-primary-light;
+$dark-grey: $text-body-light;
+$grey: $text-muted-light;
+$blue: $accent-primary;
+$slate: $text-body-dark;
+$off-white: $text-primary-dark;
+$white: $bg-light;
+$green: $toggle-active;
+$purple: #8b5cf6;
+$red: $error;
+$orange: $warning;
+$yellow: $selection-bg;
+$accent: $accent-primary;
 // Fonts
 $font-stack: 'Source Sans Pro', system, system-ui, -apple-system,
   BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
