@@ -30,7 +30,7 @@
       visibility: hidden;
       position: absolute;
       &:checked + label {
-        background: $green;
+        background: $toggle-active;
       }
       &:checked + label:after {
         left: calc(100% - 3px);
@@ -43,7 +43,7 @@
       text-indent: -9999px;
       width: 45px;
       height: 25px;
-      background: grey;
+      background: $toggle-inactive;
       display: block;
       border-radius: 100px;
       position: relative;
