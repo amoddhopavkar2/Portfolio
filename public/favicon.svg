@@ -1,9 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <style>
-    .bg { fill: #fff1e5; }
-    .fg { fill: #000099; }
-    @media (prefers-color-scheme: dark) { .bg { fill: #111111; } .fg { fill: #ccccff; } }
-  </style>
-  <rect class="bg" width="64" height="64" rx="14" />
-  <text class="fg" x="32" y="46" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700">a</text>
+<svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+<!-- Full-bleed square and a bold "A" drawn as a path that fills the icon, like sive.rs/favicon.svg. Site colors: link blue #009, paper #fff1e5. -->
+<rect x="0" y="0" width="700" height="700" fill="#000099" />
+<path fill="#fff1e5" fill-rule="evenodd" d="
+M 20,690
+L 262,10
+L 438,10
+L 680,690
+L 512,690
+L 466,552
+L 234,552
+L 188,690
+Z
+M 276,424
+L 424,424
+L 350,186
+Z
+"/>
 </svg>
