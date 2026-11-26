@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `Amod Dhopavkar`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Amod Dhopavkar is a software engineer at Goldman Sachs building backend and platform systems with Java, Spring Boot and Kubernetes.`,
     author: `Amod Dhopavkar`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://amoddhopavkar.com`,
   },
   flags: {
     DEV_SSR: true
