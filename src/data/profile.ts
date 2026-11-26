@@ -17,7 +17,8 @@ export const profile = {
     title: "Amod Dhopavkar | Software Engineer",
     description:
       "Amod Dhopavkar is a software engineer at Goldman Sachs building backend and platform systems with Java, Spring Boot and Kubernetes.",
-    image: "/og-image.png",
+    // Bump ?v= whenever og-image.png changes: LinkedIn caches preview images by URL.
+    image: "/og-image.png?v=2",
     imageAlt: "Amod Dhopavkar, Software Engineer: Java, Spring Boot, Kubernetes, Distributed Systems",
   },
 }
