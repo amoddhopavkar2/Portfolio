@@ -5,9 +5,10 @@ import FourZeroFour from "../components/four-zero-four/four-zero-four";
 
 const NotFoundPage = () => (
   <>
-    <Seo/>
     <FourZeroFour/>
   </>
 )
+
+export const Head = () => <Seo />
 
 export default NotFoundPage

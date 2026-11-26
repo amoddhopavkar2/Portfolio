@@ -15,7 +15,6 @@ import Scroll from "../components/scroll";
 const IndexPage = () => (
   <>
     <Scroll />
-    <Seo/>
     <Switch />
     <Intro />
     <Background />
@@ -25,5 +24,8 @@ const IndexPage = () => (
     <Footer />
   </>
 )
+
+// Gatsby's Head API puts these tags in <head>, where link-preview crawlers like LinkedIn look for them.
+export const Head = () => <Seo />
 
 export default IndexPage
