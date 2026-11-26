@@ -1,0 +1,28 @@
+---
+import Page from "../layouts/Page.astro"
+import { profile } from "../data/profile"
+
+// Update this page about once a month. Change `updated` when you do.
+const updated = new Date("2026-11-25")
+const items = [
+  "Building backend and platform systems at Goldman Sachs in Salt Lake City.",
+  "Rebuilding this site to say more about me than a resume does. It's static Astro with no client-side JavaScript.",
+  "Writing again, starting with the posts on the writing page.",
+]
+---
+
+<Page title={`Now | ${profile.name}`} description="What I'm focused on this month.">
+  <header class="page-header">
+    <h1 class="page-title">Now</h1>
+    <p class="page-lede">
+      What I'm focused on at the moment. Updated
+      <time datetime={updated.toISOString().slice(0, 10)}>{updated.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</time>.
+    </p>
+  </header>
+  <ul class="now-list">
+    {items.map((item) => <li>{item}</li>)}
+  </ul>
+  <p class="muted">
+    This is a <a href="https://nownownow.com/about" rel="noopener">now page</a>, an idea from Derek Sivers.
+  </p>
+</Page>

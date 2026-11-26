@@ -1,0 +1,39 @@
+---
+import Page from "../layouts/Page.astro"
+import { profile } from "../data/profile"
+import { Image } from "astro:assets"
+import skydive from "../assets/skydive.jpg"
+
+const parks = ["Zion", "Bryce Canyon", "Capitol Reef", "Arches", "Canyonlands"]
+const video = "https://youtu.be/9g5mvy8KutI"
+---
+
+<Page title={`Outside | ${profile.name}`} description="Parks, a skydive, and other things that aren't code.">
+  <header class="page-header">
+    <h1 class="page-title">Outside</h1>
+    <p class="page-lede">Things that aren't code.</p>
+  </header>
+
+  <section class="section outside" id="skydive" aria-labelledby="skydive-title">
+    <h2 id="skydive-title" class="outside__title">Skydive</h2>
+    <p class="outside__meta">Skydive San Diego · 18 June 2026</p>
+    <a class="video" href={video} rel="noopener" aria-label="Watch the skydive video on YouTube">
+      <Image src={skydive} alt="Still from the skydive video" widths={[400, 680, 1024]} sizes="(max-width: 42rem) 100vw, 42rem" loading="eager" />
+      <span class="video__play" aria-hidden="true">▶</span>
+    </a>
+    <p class="outside__caption">Opens on YouTube.</p>
+  </section>
+
+  <section class="section outside" id="mighty-5" aria-labelledby="parks-title">
+    <h2 id="parks-title" class="outside__title">Utah's Mighty 5</h2>
+    <p>I've been to all five of Utah's national parks.</p>
+    <ul class="parks">
+      {parks.map((park) => <li>{park}</li>)}
+    </ul>
+  </section>
+
+  <section class="section outside" id="f1" aria-labelledby="f1-title">
+    <h2 id="f1-title" class="outside__title">Formula 1</h2>
+    <p>When I'm not working, I'm usually planning the next trip or watching a race.</p>
+  </section>
+</Page>

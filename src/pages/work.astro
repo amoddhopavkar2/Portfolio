@@ -1,0 +1,82 @@
+---
+import Page from "../layouts/Page.astro"
+import { profile, impact, featuredJob, earlierJobs, skills } from "../data/profile"
+---
+
+<Page title={`Work | ${profile.name}`} description={profile.seo.description}>
+  <header class="page-header">
+    <h1 class="page-title">Work</h1>
+    <p class="page-lede">{profile.role}. {profile.summary}</p>
+    <nav class="hero__links" aria-label="Profiles">
+      <a href={profile.links.resume}>Resume (PDF)</a>
+      <a href={profile.links.github} rel="me noopener">GitHub</a>
+      <a href={profile.links.linkedin} rel="me noopener">LinkedIn</a>
+      <a href={`mailto:${profile.email}`}>Email</a>
+    </nav>
+  </header>
+
+  <section class="impact" aria-label="Selected results">
+    <ul class="impact__list">
+      {impact.map((item) => (
+        <li class="impact__item">
+          <span class="impact__value">{item.value}</span>
+          <span class="impact__label">{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="experience">
+    <h2 id="experience" class="section__title">Experience</h2>
+
+    <article class="job">
+      <header class="job__header">
+        <h3 class="job__company">
+          <a href={featuredJob.url} rel="noopener">{featuredJob.company}</a>
+        </h3>
+        <span class="job__meta">{featuredJob.location}</span>
+      </header>
+      {featuredJob.roles.map((role) => (
+        <div class="role">
+          <div class="role__header">
+            <h4 class="role__title">{role.title}</h4>
+            <span class="role__dates">{role.dates}</span>
+          </div>
+          <ul class="role__bullets">
+            {role.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+        </div>
+      ))}
+    </article>
+
+    <h3 class="earlier__label">Earlier</h3>
+    <ul class="earlier">
+      {earlierJobs.map((job) => (
+        <li class="earlier__item">
+          <div class="earlier__header">
+            <span>
+              <span class="earlier__company">
+                {job.url ? <a href={job.url} rel="noopener">{job.company}</a> : job.company}
+              </span>
+              <span class="earlier__title"> · {job.roles[0].title}</span>
+            </span>
+            <span class="earlier__dates">{job.roles[0].dates}</span>
+          </div>
+          {job.summary && <p class="earlier__summary">{job.summary}</p>}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="skills">
+    <h2 id="skills" class="section__title">Skills</h2>
+    <dl class="skills">
+      {skills.map((skill) => (
+        <div class="skills__row">
+          <dt>{skill.group}</dt>
+          <dd>{skill.items.join(", ")}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+</Page>
