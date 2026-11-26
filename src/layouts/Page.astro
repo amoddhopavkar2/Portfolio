@@ -27,7 +27,7 @@ const year = new Date().getFullYear()
 <Base title={title} description={description} noindex={noindex}>
   <div class="page">
     <header class="site-header">
-      <a class="site-header__name" href="/">{profile.name}</a>
+      <p class="site-header__name"><a href="/">{profile.name}</a></p>
       <nav class="site-nav" aria-label="Site">
         {nav.map((item) => (
           <a href={item.href} aria-current={(path + "/").startsWith(item.href) ? "page" : undefined}>{item.label}</a>

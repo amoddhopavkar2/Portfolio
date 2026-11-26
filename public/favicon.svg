@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <style>
-    rect { fill: #17171c; }
-    text { fill: #fbfbf9; }
-    @media (prefers-color-scheme: dark) { rect { fill: #ececf1; } text { fill: #0f0f13; } }
+    .bg { fill: #fff1e5; }
+    .fg { fill: #000099; }
+    @media (prefers-color-scheme: dark) { .bg { fill: #111111; } .fg { fill: #ccccff; } }
   </style>
-  <rect width="64" height="64" rx="14" />
-  <text x="32" y="44" text-anchor="middle" font-family="Georgia, serif" font-size="34" font-weight="700">A</text>
+  <rect class="bg" width="64" height="64" rx="14" />
+  <text class="fg" x="32" y="46" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="50" font-weight="700">a</text>
 </svg>

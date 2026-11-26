@@ -1,0 +1,11 @@
+{
+  "name": "Amod Dhopavkar",
+  "short_name": "Amod",
+  "icons": [
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#fff1e5",
+  "background_color": "#fff1e5",
+  "display": "browser"
+}

@@ -1,34 +1,44 @@
+/*
+ * Typography and UI follow sive.rs: Georgia body text at 20px, a 60ch column,
+ * a warm paper background, classic blue underlined links, and small grey
+ * sans-serif for dates and metadata. Headings use Source Serif 4, standing in
+ * for the custom display face sive.rs uses for its headings.
+ */
+
 /* ===== Tokens ===== */
 :root {
-  --bg: #fbfbf9;
-  --surface: #f2f2ee;
-  --text: #17171c;
-  --muted: #5d5d68;
-  --faint: #8a8a94;
-  --rule: #e3e3dd;
-  --accent: #4f46e5;
-  --accent-soft: rgba(79, 70, 229, 0.1);
+  --bg: #fff1e5;
+  --surface: #fff;
+  --text: #000;
+  --muted: #333;
+  --faint: #999;
+  --rule: #e9d3bf;
+  --link: #009;
 
-  --serif: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
-  --sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --body: Georgia, "Times New Roman", serif;
+  --heading: "Source Serif 4 Variable", Georgia, serif;
+  --meta: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 
-  --measure: 42rem;
-  --gutter: clamp(1.25rem, 5vw, 2rem);
-  --space-section: clamp(3rem, 8vw, 4.5rem);
+  --measure: 60ch;
+  --gutter: 20px;
 
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f0f13;
-    --surface: #18181f;
-    --text: #ececf1;
-    --muted: #a2a2ae;
-    --faint: #74747f;
-    --rule: #26262f;
-    --accent: #a5b4fc;
-    --accent-soft: rgba(165, 180, 252, 0.12);
+    --bg: #111;
+    --surface: #1c1c1c;
+    --text: #eee;
+    --muted: #ccc;
+    --faint: #aaa;
+    --rule: #333;
+    --link: #ccf;
+  }
+
+  img,
+  video {
+    filter: brightness(0.8) contrast(1.2);
   }
 }
 
@@ -46,14 +56,14 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
-  font-family: var(--sans);
-  font-size: 1rem;
-  line-height: 1.65;
-  font-feature-settings: "cv11", "ss01";
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--body);
+  font-size: 1.25rem;
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
 }
 
 h1,
@@ -67,44 +77,68 @@ dd {
   margin: 0;
 }
 
+/* Heading sizes are the browser defaults sive.rs relies on: h1 2em (40px),
+   h2 1.5em (30px), h3 1.17em (23.4px), h4 1em, all bold. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
 ul {
   padding: 0;
   list-style: none;
 }
 
-a {
-  color: inherit;
-  text-decoration-line: underline;
-  text-decoration-color: var(--rule);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-a:hover {
-  color: var(--accent);
-  text-decoration-color: currentColor;
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 a:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--link);
   outline-offset: 3px;
-  border-radius: 2px;
 }
 
-::selection {
-  background: var(--accent-soft);
+time,
+small {
+  font-family: var(--meta);
 }
 
 .skip-link {
   position: absolute;
   left: var(--gutter);
   top: -3rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   background: var(--text);
   color: var(--bg);
-  text-decoration: none;
-  border-radius: 4px;
+  font-family: var(--meta);
+  font-size: 0.8rem;
   z-index: 10;
 }
 
@@ -112,11 +146,16 @@ a:focus-visible {
   top: 1rem;
 }
 
+.muted {
+  color: var(--muted);
+}
+
 /* ===== Layout ===== */
 .page {
-  max-width: calc(var(--measure) + 2 * var(--gutter));
-  margin: 0 auto;
-  padding: clamp(2rem, 6vw, 3.5rem) var(--gutter) 3rem;
+  /* Like sive.rs: 60ch total, including the 20px side padding. */
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 1.5rem var(--gutter) 2rem;
 }
 
 .page--center {
@@ -127,51 +166,155 @@ a:focus-visible {
   gap: 1rem;
 }
 
-/* ===== Hero ===== */
-.hero__name {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(2.5rem, 7vw, 3.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+/* ===== Site header ===== */
+.site-header {
+  margin-bottom: 4em;
 }
 
-.hero__role {
+/* Same as the sive.rs name: an h1-sized (40px) bold link. */
+.site-header__name {
+  margin: 0.67em 0 0.25em;
+  font-family: var(--heading);
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ===== Page headers ===== */
+.page-header {
+  margin-bottom: 2em;
+}
+
+.page-title {
+  font-size: 2em;
+}
+
+.page-lede {
   margin-top: 0.75rem;
-  font-size: 1.125rem;
-  font-weight: 500;
+  color: var(--muted);
+}
+
+/* Shared by the 404 page. */
+.hero__name {
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: 2em;
+  line-height: 1.2;
 }
 
 .hero__summary {
-  margin-top: 1rem;
-  max-width: 36rem;
   color: var(--muted);
-  font-size: 1.0625rem;
 }
 
 .hero__links {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  font-weight: 500;
+  gap: 0.25rem 1.25rem;
 }
 
-.hero__links a::after {
-  content: " ↗";
+/* ===== Prose (home, posts, notes) ===== */
+.prose > * + * {
+  margin-top: 1em;
+}
+
+.prose h2 {
+  margin-top: 4em;
+  margin-bottom: 0.83em;
+}
+
+.prose h2 + * {
+  margin-top: 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25em;
+  list-style: revert;
+}
+
+.prose li + li {
+  margin-top: 0.5em;
+}
+
+.prose blockquote {
+  margin: 1.5em 0;
+  padding: 1em;
+  background-color: var(--surface);
+}
+
+.prose pre {
+  white-space: pre-wrap;
+  padding: 0.5em;
+  background-color: #000;
+  color: #ccc;
+  font-size: 0.75em;
+}
+
+.prose code {
+  font-size: 0.85em;
+}
+
+.home__role {
+  font-family: var(--meta);
+  font-size: 0.8rem;
   color: var(--faint);
-  font-weight: 400;
 }
 
-.hero__links a[href^="/"]::after,
-.hero__links a[href^="mailto:"]::after {
-  content: "";
+.post-date {
+  margin-top: 0.5rem;
+  color: var(--faint);
+  font-family: var(--meta);
+  font-size: 0.8rem;
 }
 
-/* ===== Impact strip ===== */
+.post-footer {
+  margin-top: 3em;
+}
+
+/* ===== Sections ===== */
+.section__title {
+  margin-top: 4em;
+  margin-bottom: 0.83em;
+}
+
+/* ===== Lists of posts (date above title, sive.rs style) ===== */
+.post-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.post-list li {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-list time {
+  order: -1;
+  color: var(--faint);
+  font-size: 0.8rem;
+}
+
+.post-list p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* ===== Impact strip (work page) ===== */
 .impact {
-  margin-top: var(--space-section);
-  padding: 1.5rem 0;
+  margin-top: 2.5em;
+  padding: 1.25rem 0;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
@@ -179,66 +322,47 @@ a:focus-visible {
 .impact__list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .impact__item {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.25rem;
 }
 
 .impact__value {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(1.5rem, 4vw, 1.875rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.15;
   font-variant-numeric: lining-nums tabular-nums;
   white-space: nowrap;
 }
 
 .impact__label {
-  color: var(--muted);
-  font-size: 0.875rem;
-  line-height: 1.45;
-}
-
-/* ===== Sections ===== */
-.section {
-  margin-top: var(--space-section);
-}
-
-.section__title {
-  margin-bottom: 1.5rem;
   color: var(--faint);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--meta);
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 
-/* ===== Experience ===== */
+/* ===== Experience (work page) ===== */
 .job__header,
 .role__header,
 .earlier__header,
-.project__header {
+.project__header,
+.book__header {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.25rem 1rem;
-}
-
-.job__company {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.375rem;
-  letter-spacing: -0.01em;
+  gap: 0.15rem 1rem;
 }
 
 .job__company a,
 .earlier__company a {
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -246,50 +370,28 @@ a:focus-visible {
 .role__dates,
 .earlier__dates {
   color: var(--faint);
-  font-size: 0.875rem;
-  font-variant-numeric: tabular-nums;
+  font-family: var(--meta);
+  font-size: 0.8rem;
   white-space: nowrap;
 }
 
 .role {
-  margin-top: 1.25rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--rule);
-}
-
-.role__title {
-  font-size: 1rem;
-  font-weight: 600;
+  margin-top: 1.5rem;
 }
 
 .role__bullets {
   margin-top: 0.5rem;
-  display: grid;
-  gap: 0.5rem;
-  color: var(--muted);
+  padding-left: 1.25em;
+  list-style: disc;
 }
 
-.role__bullets li {
-  position: relative;
-  padding-left: 1.1rem;
-}
-
-.role__bullets li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: 0.4rem;
-  height: 1px;
-  background: var(--faint);
+.role__bullets li + li {
+  margin-top: 0.5em;
 }
 
 .earlier__label {
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  color: var(--faint);
-  font-size: 0.8125rem;
-  font-weight: 500;
 }
 
 .earlier {
@@ -297,57 +399,38 @@ a:focus-visible {
   gap: 1rem;
 }
 
-.earlier__item {
-  display: grid;
-  gap: 0.1rem;
-}
-
 .earlier__company {
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.earlier__title {
-  color: var(--muted);
-}
-
+.earlier__title,
 .earlier__summary {
   color: var(--muted);
-  font-size: 0.9375rem;
 }
 
 /* ===== Projects ===== */
 .projects {
   display: grid;
-  gap: 1.75rem;
-}
-
-.project__name {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.25rem;
-  letter-spacing: -0.01em;
+  gap: 2rem;
 }
 
 .project__links {
   display: flex;
   gap: 1rem;
-  font-size: 0.875rem;
+  font-family: var(--meta);
+  font-size: 0.85rem;
 }
 
-.project__links a::after {
-  content: " ↗";
-  color: var(--faint);
-}
-
-.project__description {
+.project__description,
+.project__more,
+.project__stack {
   margin-top: 0.35rem;
-  color: var(--muted);
 }
 
 .project__stack {
-  margin-top: 0.35rem;
   color: var(--faint);
-  font-size: 0.8125rem;
+  font-family: var(--meta);
+  font-size: 0.8rem;
 }
 
 /* ===== Skills ===== */
@@ -363,250 +446,56 @@ a:focus-visible {
 }
 
 .skills dt {
-  font-weight: 600;
-  font-size: 0.9375rem;
+  font-weight: 700;
 }
 
 .skills dd {
   color: var(--muted);
-  font-size: 0.9375rem;
-}
-
-/* ===== Footer ===== */
-.footer {
-  margin-top: var(--space-section);
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
-  font-size: 0.875rem;
-}
-
-.footer__meta {
-  color: var(--faint);
-}
-
-/* ===== Site header and navigation ===== */
-.site-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem 1.5rem;
-  margin-bottom: clamp(2.5rem, 7vw, 4rem);
-}
-
-.site-header__name {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.25rem;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-}
-
-.site-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1.1rem;
-  font-size: 0.9375rem;
-}
-
-.site-nav a {
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.site-nav a:hover,
-.site-nav a[aria-current="page"] {
-  color: var(--text);
-}
-
-.site-nav a[aria-current="page"] {
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-underline-offset: 0.35em;
-}
-
-/* ===== Page headers ===== */
-.page-header {
-  margin-bottom: 2rem;
-}
-
-.page-title {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(2rem, 6vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.page-lede {
-  margin-top: 0.75rem;
-  color: var(--muted);
-  font-size: 1.0625rem;
-}
-
-.page-header .hero__links {
-  margin-top: 1rem;
-}
-
-.muted {
-  color: var(--muted);
-}
-
-/* ===== Prose (home, posts, notes) ===== */
-.prose {
-  font-size: 1.0625rem;
-  line-height: 1.75;
-}
-
-.prose > * + * {
-  margin-top: 1.15em;
-}
-
-.prose h2 {
-  margin-top: 2em;
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.375rem;
-  letter-spacing: -0.01em;
-}
-
-.prose ul,
-.prose ol {
-  padding-left: 1.25rem;
-  list-style: revert;
-}
-
-.prose a {
-  text-decoration-color: var(--accent);
-}
-
-.prose blockquote {
-  margin: 1.5em 0;
-  padding-left: 1rem;
-  border-left: 2px solid var(--rule);
-  color: var(--muted);
-}
-
-.prose code {
-  font-size: 0.9em;
-  padding: 0.1em 0.3em;
-  border-radius: 3px;
-  background: var(--surface);
-}
-
-.home__role {
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
-.post-date {
-  margin-top: 0.5rem;
-  color: var(--faint);
-  font-size: 0.875rem;
-}
-
-.post-footer {
-  margin-top: 3rem;
-  font-size: 0.9375rem;
-}
-
-/* ===== Post list ===== */
-.post-list {
-  display: grid;
-  gap: 1.25rem;
-}
-
-.post-list li {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.15rem 1rem;
-  align-items: baseline;
-}
-
-.post-list a {
-  font-weight: 500;
-}
-
-.post-list time {
-  color: var(--faint);
-  font-size: 0.875rem;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.post-list p {
-  grid-column: 1 / -1;
-  color: var(--muted);
-  font-size: 0.9375rem;
 }
 
 /* ===== Books ===== */
 .books {
   display: grid;
-  gap: 1.75rem;
-}
-
-.book__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-}
-
-.book__title {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.1875rem;
+  gap: 3rem;
 }
 
 .book__rating {
-  color: var(--accent);
+  font-family: var(--meta);
+  font-size: 0.85rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
 .book__meta {
   color: var(--faint);
-  font-size: 0.875rem;
+  font-family: var(--meta);
+  font-size: 0.8rem;
 }
 
 .book__takeaway {
-  margin-top: 0.35rem;
-  color: var(--muted);
+  margin-top: 0.5rem;
 }
 
 .book__notes summary {
   margin-top: 0.5rem;
+  color: var(--link);
   cursor: pointer;
-  font-size: 0.9375rem;
-}
-
-/* ===== Projects extras ===== */
-.project__more {
-  margin-top: 0.35rem;
-  font-size: 0.9375rem;
 }
 
 /* ===== Outside ===== */
 .outside__title {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.375rem;
-  letter-spacing: -0.01em;
+  margin-top: 4em;
 }
 
 .outside__meta,
 .outside__caption {
   color: var(--faint);
-  font-size: 0.875rem;
+  font-family: var(--meta);
+  font-size: 0.8rem;
 }
 
 .outside__meta {
-  margin-bottom: 1rem;
+  margin: 0.25rem 0 1rem;
 }
 
 .outside__caption {
@@ -620,60 +509,63 @@ a:focus-visible {
 .video {
   position: relative;
   display: block;
-  overflow: hidden;
-  border-radius: 8px;
-  background: var(--surface);
 }
 
 .video img {
   display: block;
   width: 100%;
-  height: auto;
-  transition: opacity 0.2s ease;
-}
-
-.video:hover img {
-  opacity: 0.85;
 }
 
 .video__play {
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
-  font-size: 1.5rem;
+  font-family: var(--meta);
+  font-size: 1.25rem;
   padding-left: 0.2rem;
 }
 
 .parks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.parks li {
-  padding: 0.25rem 0.75rem;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  font-size: 0.9375rem;
+  padding-left: 1.25em;
+  list-style: disc;
 }
 
 /* ===== Now ===== */
 .now-list {
-  display: grid;
-  gap: 0.75rem;
   margin-bottom: 2rem;
-  padding-left: 1.25rem;
+  padding-left: 1.25em;
   list-style: disc;
 }
 
-.footer a[href="/rss.xml"] {
+.now-list li + li {
+  margin-top: 0.5em;
+}
+
+/* ===== Footer ===== */
+.footer {
+  margin-top: 4em;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  font-family: var(--meta);
+  font-size: 0.8rem;
+}
+
+.footer__meta {
+  color: var(--faint);
+}
+
+.footer__meta a {
   color: inherit;
 }
 
@@ -681,7 +573,7 @@ a:focus-visible {
 @media (max-width: 34rem) {
   .impact__list {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .impact__item {
@@ -697,13 +589,7 @@ a:focus-visible {
 
   .skills__row {
     grid-template-columns: 1fr;
-    gap: 0.1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
+    gap: 0;
   }
 }
 
@@ -711,13 +597,13 @@ a:focus-visible {
   :root {
     --bg: #fff;
     --text: #000;
-    --muted: #333;
+    --muted: #222;
     --faint: #555;
+    --link: #000;
   }
 
   .skip-link,
-  .hero__links a::after,
-  .project__links a::after {
+  .site-nav {
     display: none;
   }
 }
