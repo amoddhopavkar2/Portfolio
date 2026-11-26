@@ -1,5 +1,4 @@
 ---
-import "@fontsource-variable/inter"
 import "@fontsource-variable/source-serif-4"
 import "../styles/global.css"
 import { profile } from "../data/profile"
@@ -22,16 +21,17 @@ const image = new URL(profile.seo.image, site).href
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f0f13" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fff1e5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={profile.name} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/logo.png" type="image/png" sizes="500x500" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Link previews (LinkedIn, Slack, X) read these from <head>. -->
     <meta property="og:title" content={title} />

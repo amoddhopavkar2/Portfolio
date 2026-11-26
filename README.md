@@ -5,8 +5,8 @@ Source for [amoddhopavkar.com](https://amoddhopavkar.com): a single-page, minima
 ## Stack
 
 - **Astro**: static HTML at build time; no client-side JavaScript is shipped.
-- **Plain CSS**: design tokens and automatic light/dark mode in `src/styles/global.css`.
-- **Self-hosted fonts**: Source Serif 4 and Inter via Fontsource, so there are no third-party requests.
+- **Plain CSS**: typography and UI modeled on [sive.rs](https://sive.rs) (Georgia at 20px, a 60ch column, warm paper background, automatic dark mode) in `src/styles/global.css`.
+- **Fonts**: Georgia (a system font) for body text; headings in Source Serif 4, self-hosted via Fontsource, so there are no third-party requests.
 - **Netlify**: builds from `main`; every pull request gets a deploy preview. Settings live in `netlify.toml`.
 
 ## Editing content
