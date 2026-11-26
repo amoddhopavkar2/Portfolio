@@ -13,12 +13,12 @@ const { title, description, noindex } = Astro.props
 const hasBooks = Object.keys(import.meta.glob("../content/books/*.md")).length > 0
 
 const nav = [
-  { href: "/writing", label: "Writing" },
-  ...(hasBooks ? [{ href: "/books", label: "Books" }] : []),
-  { href: "/projects", label: "Projects" },
-  { href: "/outside", label: "Outside" },
-  { href: "/work", label: "Work" },
-  { href: "/now", label: "Now" },
+  { href: "/writing/", label: "Writing" },
+  ...(hasBooks ? [{ href: "/books/", label: "Books" }] : []),
+  { href: "/projects/", label: "Projects" },
+  { href: "/outside/", label: "Outside" },
+  { href: "/work/", label: "Work" },
+  { href: "/now/", label: "Now" },
 ]
 const path = Astro.url.pathname.replace(/\/$/, "")
 const year = new Date().getFullYear()
@@ -30,7 +30,7 @@ const year = new Date().getFullYear()
       <a class="site-header__name" href="/">{profile.name}</a>
       <nav class="site-nav" aria-label="Site">
         {nav.map((item) => (
-          <a href={item.href} aria-current={path.startsWith(item.href) ? "page" : undefined}>{item.label}</a>
+          <a href={item.href} aria-current={(path + "/").startsWith(item.href) ? "page" : undefined}>{item.label}</a>
         ))}
       </nav>
     </header>

@@ -28,12 +28,12 @@ const fmt = (d: Date) => d.toLocaleDateString("en-US", { year: "numeric", month:
       I moved to the US in 2022 for a master's in computer science at Northeastern.
       Since then I have solved a LeetCode problem every day for a thousand days,
       visited all five of Utah's national parks, and in June{" "}
-      <a href="/outside#skydive">jumped out of a plane near San Diego</a>.
+      <a href="/outside/#skydive">jumped out of a plane near San Diego</a>.
     </p>
 
     <p>
       I read mostly non-fiction. I build small tools I want to use myself, like{" "}
-      <a href="/projects#clauseguard">ClauseGuard</a>. When I'm not at a keyboard I'm usually
+      <a href="/projects/#clauseguard">ClauseGuard</a>. When I'm not at a keyboard I'm usually
       planning the next trip or watching a Formula 1 race.
     </p>
 
@@ -48,7 +48,7 @@ const fmt = (d: Date) => d.toLocaleDateString("en-US", { year: "numeric", month:
       <ul class="post-list">
         {posts.map((post) => (
           <li>
-            <a href={`/writing/${post.id}`}>{post.data.title}</a>
+            <a href={`/writing/${post.id}/`}>{post.data.title}</a>
             <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
           </li>
         ))}
