@@ -1,0 +1,25 @@
+---
+import Page from "../../layouts/Page.astro"
+import { profile } from "../../data/profile"
+import { getCollection, render } from "astro:content"
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing", ({ data }) => !data.draft)
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }))
+}
+
+const { post } = Astro.props
+const { Content } = await render(post)
+const date = post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })
+---
+
+<Page title={`${post.data.title} | ${profile.name}`} description={post.data.description}>
+  <article class="prose">
+    <header class="page-header">
+      <h1 class="page-title">{post.data.title}</h1>
+      <p class="post-date"><time datetime={post.data.date.toISOString()}>{date}</time></p>
+    </header>
+    <Content />
+  </article>
+  <p class="post-footer"><a href="/writing/">← All writing</a></p>
+</Page>

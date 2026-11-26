@@ -1,0 +1,35 @@
+---
+import Page from "../layouts/Page.astro"
+import { profile, projects } from "../data/profile"
+
+const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+const posts: Record<string, string> = {
+  ClauseGuard: "/writing/a-privacy-tool-that-never-phones-home/",
+}
+---
+
+<Page title={`Projects | ${profile.name}`} description="Small tools I built because I wanted them.">
+  <header class="page-header">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-lede">Small tools I built because I wanted them.</p>
+  </header>
+  <ul class="projects">
+    {projects.map((project) => (
+      <li class="project" id={slug(project.name)}>
+        <div class="project__header">
+          <h2 class="project__name">{project.name}</h2>
+          <span class="project__links">
+            {project.links.map((link) => (
+              <a href={link.url} rel="noopener">{link.label}</a>
+            ))}
+          </span>
+        </div>
+        <p class="project__description">{project.description}</p>
+        {posts[project.name] && (
+          <p class="project__more"><a href={posts[project.name]}>Why I built it →</a></p>
+        )}
+        <p class="project__stack">{project.stack.join(" · ")}</p>
+      </li>
+    ))}
+  </ul>
+</Page>

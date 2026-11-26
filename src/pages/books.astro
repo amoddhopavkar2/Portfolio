@@ -1,0 +1,39 @@
+---
+import Page from "../layouts/Page.astro"
+import { profile } from "../data/profile"
+import { getCollection, render } from "astro:content"
+
+// Sorted best first, then most recent, like sive.rs/book.
+const books = (await getCollection("books")).sort(
+  (a, b) => b.data.rating - a.data.rating || b.data.read.valueOf() - a.data.read.valueOf(),
+)
+const entries = await Promise.all(
+  books.map(async (book) => ({ book, hasNotes: Boolean(book.body?.trim()), Content: (await render(book)).Content })),
+)
+---
+
+<Page title={`Books | ${profile.name}`} description="Notes on the non-fiction I read, rated out of 10." noindex={books.length === 0}>
+  <header class="page-header">
+    <h1 class="page-title">Books</h1>
+    <p class="page-lede">Mostly non-fiction. Rated out of 10, best first.</p>
+  </header>
+  {books.length === 0 && <p class="muted">Notes are on their way.</p>}
+  <ul class="books">
+    {entries.map(({ book, hasNotes, Content }) => (
+      <li class="book" id={book.id}>
+        <div class="book__header">
+          <h2 class="book__title">{book.data.title}</h2>
+          <span class="book__rating" aria-label={`Rated ${book.data.rating} out of 10`}>{book.data.rating}/10</span>
+        </div>
+        <p class="book__meta">{book.data.author} · read {book.data.read.toLocaleDateString("en-US", { year: "numeric", month: "short", timeZone: "UTC" })}</p>
+        <p class="book__takeaway">{book.data.takeaway}</p>
+        {hasNotes && (
+          <details class="book__notes">
+            <summary>Notes</summary>
+            <div class="prose"><Content /></div>
+          </details>
+        )}
+      </li>
+    ))}
+  </ul>
+</Page>
