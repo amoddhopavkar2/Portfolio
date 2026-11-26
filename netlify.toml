@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # The site used to be Gatsby, so Netlify auto-installs @netlify/plugin-gatsby,
+  # which crashes on a non-Gatsby build. This tells Netlify to skip it.
+  NETLIFY_SKIP_GATSBY_BUILD_PLUGIN = "true"
+
+# Fingerprinted Astro assets never change, so cache them for a year.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
