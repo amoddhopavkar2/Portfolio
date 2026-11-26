@@ -77,13 +77,31 @@ dd {
   margin: 0;
 }
 
+/* Heading sizes are the browser defaults sive.rs relies on: h1 2em (40px),
+   h2 1.5em (30px), h3 1.17em (23.4px), h4 1em, all bold. */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--heading);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 1em;
 }
 
 ul {
@@ -134,7 +152,8 @@ small {
 
 /* ===== Layout ===== */
 .page {
-  max-width: calc(var(--measure) + 2 * var(--gutter));
+  /* Like sive.rs: 60ch total, including the 20px side padding. */
+  max-width: var(--measure);
   margin-inline: auto;
   padding: 1.5rem var(--gutter) 2rem;
 }
@@ -149,27 +168,22 @@ small {
 
 /* ===== Site header ===== */
 .site-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.25rem 1.5rem;
   margin-bottom: 4em;
 }
 
+/* Same as the sive.rs name: an h1-sized (40px) bold link. */
 .site-header__name {
-  color: var(--text);
+  margin: 0.67em 0 0.25em;
   font-family: var(--heading);
-  font-weight: 600;
-  font-size: 1.35rem;
-  text-decoration: none;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .site-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0 1rem;
-  font-size: 1.05rem;
 }
 
 .site-nav a[aria-current="page"] {
@@ -183,7 +197,7 @@ small {
 }
 
 .page-title {
-  font-size: 2.25rem;
+  font-size: 2em;
 }
 
 .page-lede {
@@ -194,8 +208,8 @@ small {
 /* Shared by the 404 page. */
 .hero__name {
   font-family: var(--heading);
-  font-weight: 600;
-  font-size: 2.25rem;
+  font-weight: 700;
+  font-size: 2em;
   line-height: 1.2;
 }
 
@@ -216,8 +230,12 @@ small {
 }
 
 .prose h2 {
-  margin-top: 2.5em;
-  font-size: 1.5rem;
+  margin-top: 4em;
+  margin-bottom: 0.83em;
+}
+
+.prose h2 + * {
+  margin-top: 0;
 }
 
 .prose ul,
@@ -250,7 +268,7 @@ small {
 
 .home__role {
   font-family: var(--meta);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--faint);
 }
 
@@ -266,13 +284,9 @@ small {
 }
 
 /* ===== Sections ===== */
-.section {
-  margin-top: 4em;
-}
-
 .section__title {
-  margin-bottom: 1em;
-  font-size: 1.5rem;
+  margin-top: 4em;
+  margin-bottom: 0.83em;
 }
 
 /* ===== Lists of posts (date above title, sive.rs style) ===== */
@@ -319,7 +333,7 @@ small {
 
 .impact__value {
   font-family: var(--heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.6rem;
   line-height: 1.15;
   font-variant-numeric: lining-nums tabular-nums;
@@ -346,10 +360,6 @@ small {
   gap: 0.15rem 1rem;
 }
 
-.job__company {
-  font-size: 1.5rem;
-}
-
 .job__company a,
 .earlier__company a {
   color: var(--text);
@@ -369,10 +379,6 @@ small {
   margin-top: 1.5rem;
 }
 
-.role__title {
-  font-size: 1.15rem;
-}
-
 .role__bullets {
   margin-top: 0.5rem;
   padding-left: 1.25em;
@@ -386,7 +392,6 @@ small {
 .earlier__label {
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  font-size: 1.15rem;
 }
 
 .earlier {
@@ -407,10 +412,6 @@ small {
 .projects {
   display: grid;
   gap: 2rem;
-}
-
-.project__name {
-  font-size: 1.5rem;
 }
 
 .project__links {
@@ -458,10 +459,6 @@ small {
   gap: 3rem;
 }
 
-.book__title {
-  font-size: 1.5rem;
-}
-
 .book__rating {
   font-family: var(--meta);
   font-size: 0.85rem;
@@ -487,7 +484,7 @@ small {
 
 /* ===== Outside ===== */
 .outside__title {
-  font-size: 1.5rem;
+  margin-top: 4em;
 }
 
 .outside__meta,
@@ -574,19 +571,6 @@ small {
 
 /* ===== Small screens ===== */
 @media (max-width: 34rem) {
-  body {
-    font-size: 1.125rem;
-  }
-
-  .site-header {
-    margin-bottom: 2.5em;
-  }
-
-  .page-title,
-  .hero__name {
-    font-size: 1.9rem;
-  }
-
   .impact__list {
     grid-template-columns: 1fr;
     gap: 0.75rem;
