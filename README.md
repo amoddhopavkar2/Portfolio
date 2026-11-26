@@ -1,41 +1,37 @@
 # Portfolio
 
-This is the codebase for my personal portfolio website, showcasing my projects, experience, and resume. Built using **Gatsby**, a React-based framework, and deployed with **Netlify** for continuous integration and deployment (CI/CD).
+Source for [amoddhopavkar.com](https://amoddhopavkar.com): a single-page, minimal portfolio built with [Astro](https://astro.build) and plain CSS, deployed on Netlify.
 
-Check out the live website at: https://amoddhopavkar.com/
+## Stack
 
+- **Astro**: static HTML at build time; no client-side JavaScript is shipped.
+- **Plain CSS**: design tokens and automatic light/dark mode in `src/styles/global.css`.
+- **Self-hosted fonts**: Source Serif 4 and Inter via Fontsource, so there are no third-party requests.
+- **Netlify**: builds from `main`; every pull request gets a deploy preview. Settings live in `netlify.toml`.
 
-## Features
+## Editing content
 
-- ⚡ **Blazing fast performance** with Gatsby’s static site generation.
-- 🔎 **SEO-friendly** for improved visibility.
-- 🌐 **Responsive design** to ensure great experience on all devices.
-- 🔄 **Continuous deployment** using Netlify for automated builds and deployment.
-- 🛠️ **Optimized** for scalability and security.
+All content lives in [`src/data/profile.ts`](src/data/profile.ts): hero, impact numbers, experience, projects and skills. Edit that file; the markup doesn't need to change. Keep it consistent with LinkedIn and the resume.
 
-## Getting Started
+Other files:
 
-To get a local copy up and running, follow these simple steps.
+| Path | What it is |
+| --- | --- |
+| `src/pages/index.astro` | The home page layout |
+| `src/pages/404.astro` | Not-found page |
+| `src/layouts/Base.astro` | `<head>`: SEO, link-preview tags, structured data |
+| `public/resume.pdf` | Resume linked from the site |
+| `public/og-image.png` | 1200×630 link-preview card for LinkedIn, Slack and X |
 
-### Prerequisites
+## Local development
 
-Make sure you have the following installed:
+Requires Node.js 22.23.4 or later.
 
-- [Node.js](https://nodejs.org/) (v14 or higher)
-- [Gatsby CLI](https://www.gatsbyjs.com/docs/reference/gatsby-cli/)
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # outputs to dist/
+npm run preview  # serves dist/ locally
+```
 
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/amoddhopavkar2/Portfolio.git
-   cd Portfolio
-
-2. **Install Dependancies**
-    ```bash
-    npm install
-
-3. **Run the development server**
-    ```bash
-    npm run develop
+After a deploy that changes the title, description or preview card, run the URL through [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh LinkedIn's cache.

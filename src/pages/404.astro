@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro"
+import { profile } from "../data/profile"
+---
+
+<Base title={`Page not found | ${profile.name}`} noindex>
+  <main id="main" class="page page--center">
+    <p class="section__title">404</p>
+    <h1 class="hero__name">This page doesn't exist.</h1>
+    <p class="hero__summary">It may have moved when the site was rebuilt.</p>
+    <nav class="hero__links" aria-label="Navigation">
+      <a href="/">Back to home</a>
+      <a href={profile.links.resume}>Resume</a>
+    </nav>
+  </main>
+</Base>
