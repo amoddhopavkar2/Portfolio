@@ -1,19 +1,50 @@
 <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
-<!-- Full-bleed square and a bold "A" drawn as a path that fills the icon, like sive.rs/favicon.svg. Site colors: link blue #009, paper #fff1e5. -->
-<rect x="0" y="0" width="700" height="700" fill="#000099" />
-<path fill="#fff1e5" fill-rule="evenodd" d="
-M 20,690
-L 262,10
-L 438,10
-L 680,690
-L 512,690
-L 466,552
-L 234,552
-L 188,690
+<!-- Same build as sive.rs/favicon.svg: a full-bleed yellow square and a black glyph drawn as a path. The glyph is a lowercase "a" from Spectral Bold (SIL OFL), the sibling of the Spectral SC heading font, scaled to span y 8..693. -->
+<rect x="0" y="0" width="700" height="700" fill="yellow" />
+<path fill="black" d="
+M 176,692
+Q 100,692 54,646
+Q 8,601 8,529
+Q 8,477 26,440
+Q 45,402 94,375
+Q 143,348 232,326
+L 374,290
+L 374,201
+Q 374,146 343,114
+Q 311,83 261,83
+Q 241,83 221,86
+Q 202,90 182,100
+L 182,247
+L 68,247
+Q 42,247 33,235
+Q 23,222 23,194
+Q 23,150 65,107
+Q 107,64 174,36
+Q 242,8 320,8
+Q 436,8 507,55
+Q 577,102 577,192
+L 577,572
+Q 587,582 605,589
+Q 622,595 646,595
+L 688,595
+L 693,599
+L 693,620
+Q 677,647 639,670
+Q 600,693 540,693
+Q 480,693 441,667
+Q 402,641 383,594
+L 374,594
+Q 334,641 284,666
+Q 233,692 176,692
 Z
-M 276,424
-L 424,424
-L 350,186
+M 197,486
+Q 197,530 223,553
+Q 248,576 292,576
+Q 331,576 374,559
+L 374,348
+Q 301,363 262,383
+Q 223,402 210,427
+Q 197,453 197,486
 Z
 "/>
 </svg>

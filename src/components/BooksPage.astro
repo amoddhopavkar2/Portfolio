@@ -76,14 +76,15 @@ const iso = (d: Date) => d.toISOString().slice(0, 10)
           </a>
         )}
         <h2 class="book__title">
-          {book.data.goodreads ? <a href={book.data.goodreads}>{book.data.title}</a> : book.data.title}
-          <span class="book__author"> by {book.data.author}</span>
+          {book.data.goodreads
+            ? <a href={book.data.goodreads}>{book.data.title} - by {book.data.author}</a>
+            : `${book.data.title} - by ${book.data.author}`}
         </h2>
         <p class="book__meta">
-          <span aria-label={`Recommend: ${book.data.rating} out of 10`}>Recommend: {book.data.rating}/10</span>
-          {" · "}Date read: <time datetime={iso(book.data.read)}>{iso(book.data.read)}</time>
-          {book.data.favorite && " · Favorite"}
-          {!book.data.finished && " · Didn’t finish"}
+          Recommend it: <strong>{book.data.rating}</strong>/10.
+          {" "}Date read: <time datetime={iso(book.data.read)}>{iso(book.data.read)}</time>.
+          {book.data.favorite && " Favorite."}
+          {!book.data.finished && " Didn’t finish."}
         </p>
         {book.data.takeaway && <p class="book__takeaway">{book.data.takeaway}</p>}
         {hasNotes && (
