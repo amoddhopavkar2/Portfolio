@@ -18,7 +18,7 @@ const byNewest = (a: Book, b: Book) => b.data.read.valueOf() - a.data.read.value
 const sortKey = (title: string) => title.replace(/^(the|a|an)\s+/i, "").replace(/^\W+/, "")
 const compare: Record<BookSort, (a: Book, b: Book) => number> = {
   // Top recommendations first; favorites lead a tie, then the most recent.
-  best: (a, b) => b.data.rating - a.data.rating || Number(b.data.favorite) - Number(a.data.favorite) || byNewest(a, b),
+  best: (a, b) => (b.data.rating ?? 0) - (a.data.rating ?? 0) || Number(b.data.favorite) - Number(a.data.favorite) || byNewest(a, b),
   newest: byNewest,
   title: (a, b) => sortKey(a.data.title).localeCompare(sortKey(b.data.title), "en", { numeric: true }),
 }
@@ -81,8 +81,8 @@ const iso = (d: Date) => d.toISOString().slice(0, 10)
             : `${book.data.title} - by ${book.data.author}`}
         </h2>
         <p class="book__meta">
-          Recommend it: <strong>{book.data.rating}</strong>/10.
-          {" "}Date read: <time datetime={iso(book.data.read)}>{iso(book.data.read)}</time>.
+          {book.data.rating !== undefined && <>Recommend it: <strong>{book.data.rating}</strong>/10.{" "}</>}
+          Date read: <time datetime={iso(book.data.read)}>{iso(book.data.read)}</time>.
           {book.data.favorite && " Favorite."}
           {!book.data.finished && " Didn’t finish."}
         </p>
