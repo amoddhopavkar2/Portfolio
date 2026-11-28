@@ -1,0 +1,98 @@
+---
+import Page from "../layouts/Page.astro"
+import { profile } from "../data/profile"
+import { getCollection, render, type CollectionEntry } from "astro:content"
+import { Image } from "astro:assets"
+
+// Like sive.rs/book: one list, three orderings, each a static page.
+export type BookSort = "best" | "newest" | "title"
+
+interface Props {
+  sort: BookSort
+}
+
+const { sort } = Astro.props
+
+type Book = CollectionEntry<"books">
+const byNewest = (a: Book, b: Book) => b.data.read.valueOf() - a.data.read.valueOf()
+const sortKey = (title: string) => title.replace(/^(the|a|an)\s+/i, "").replace(/^\W+/, "")
+const compare: Record<BookSort, (a: Book, b: Book) => number> = {
+  // Top recommendations first; favorites lead a tie, then the most recent.
+  best: (a, b) => b.data.rating - a.data.rating || Number(b.data.favorite) - Number(a.data.favorite) || byNewest(a, b),
+  newest: byNewest,
+  title: (a, b) => sortKey(a.data.title).localeCompare(sortKey(b.data.title), "en", { numeric: true }),
+}
+
+const books = (await getCollection("books")).sort(compare[sort])
+const entries = await Promise.all(
+  books.map(async (book) => ({ book, hasNotes: Boolean(book.body?.trim()), Content: (await render(book)).Content })),
+)
+
+const sorts: { key: BookSort; label: string; href: string }[] = [
+  { key: "newest", label: "newest", href: "/books/newest/" },
+  { key: "best", label: "best", href: "/books/" },
+  { key: "title", label: "title", href: "/books/title/" },
+]
+const lede = {
+  best: "Sorted with my top recommendations up top.",
+  newest: "Sorted with the most recently read up top.",
+  title: "Sorted by title.",
+}[sort]
+const iso = (d: Date) => d.toISOString().slice(0, 10)
+---
+
+<Page
+  title={`Books | ${profile.name}`}
+  description={`${books.length} books I've read, rated out of 10.`}
+  noindex={books.length === 0 || sort !== "best"}
+>
+  <header class="page-header">
+    <h1 class="page-title">Books I’ve read</h1>
+    <p class="page-lede">{books.length} books so far, rated out of 10.</p>
+    <p class="page-lede">
+      {lede} Sort by{" "}
+      {sorts.map((s, i) => (
+        <>
+          {s.key === sort ? <strong>{s.label}</strong> : <a href={s.href}>{s.label}</a>}
+          {i < sorts.length - 2 ? ", " : i === sorts.length - 2 ? ", or " : "."}
+        </>
+      ))}
+    </p>
+  </header>
+  {books.length === 0 && <p class="muted">Notes are on their way.</p>}
+  <ul class="books">
+    {entries.map(({ book, hasNotes, Content }, i) => (
+      <li class="book" id={book.id}>
+        {book.data.cover && (
+          <a class="book__cover" href={book.data.goodreads ?? `#${book.id}`} tabindex="-1" aria-hidden="true">
+            <Image
+              src={book.data.cover}
+              alt=""
+              height={187}
+              densities={[1, 2]}
+              format="webp"
+              loading={i < 3 ? "eager" : "lazy"}
+            />
+          </a>
+        )}
+        <h2 class="book__title">
+          {book.data.goodreads ? <a href={book.data.goodreads}>{book.data.title}</a> : book.data.title}
+          <span class="book__author"> by {book.data.author}</span>
+        </h2>
+        <p class="book__meta">
+          <span aria-label={`Recommend: ${book.data.rating} out of 10`}>Recommend: {book.data.rating}/10</span>
+          {" · "}Date read: <time datetime={iso(book.data.read)}>{iso(book.data.read)}</time>
+          {book.data.favorite && " · Favorite"}
+          {!book.data.finished && " · Didn’t finish"}
+        </p>
+        {book.data.takeaway && <p class="book__takeaway">{book.data.takeaway}</p>}
+        {hasNotes && (
+          <details class="book__notes">
+            <summary>Notes</summary>
+            <div class="prose"><Content /></div>
+          </details>
+        )}
+      </li>
+    ))}
+  </ul>
+</Page>

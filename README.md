@@ -18,6 +18,7 @@ Other files:
 | Path | What it is |
 | --- | --- |
 | `src/pages/index.astro` | The home page layout |
+| `src/content/books/*.md` | One file per book, seeded from the Goodreads "read" shelf (rating = stars × 2). Add `takeaway:` or a Markdown body for notes. Covers go in `covers/` (`cover: ./covers/<slug>.jpg`), resized at build |
 | `src/pages/404.astro` | Not-found page |
 | `src/layouts/Base.astro` | `<head>`: SEO, link-preview tags, structured data |
 | `public/resume.pdf` | Resume linked from the site |
