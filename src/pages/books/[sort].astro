@@ -1,0 +1,11 @@
+---
+import BooksPage, { type BookSort } from "../../components/BooksPage.astro"
+
+export function getStaticPaths() {
+  return (["newest", "title"] as BookSort[]).map((sort) => ({ params: { sort }, props: { sort } }))
+}
+
+const { sort } = Astro.props
+---
+
+<BooksPage sort={sort} />
