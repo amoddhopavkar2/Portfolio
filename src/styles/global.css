@@ -183,10 +183,15 @@ small {
   line-height: 1.2;
 }
 
+/* Nav links use the small-caps heading face, like every non-body line on
+   sive.rs, at body size (sive.rs's h4) so they sit under the name. */
 .site-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0 1rem;
+  font-family: var(--heading);
+  font-weight: var(--heading-weight);
+  font-size: 1em;
 }
 
 .site-nav a[aria-current="page"] {
