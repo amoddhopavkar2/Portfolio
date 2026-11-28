@@ -22,7 +22,7 @@ const books = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
     author: z.string(),
-    rating: z.number().int().min(1).max(10),
+    rating: z.number().int().min(1).max(10).optional(),
     cover: image().optional(),
     read: z.coerce.date(),
     takeaway: z.string().optional(),
