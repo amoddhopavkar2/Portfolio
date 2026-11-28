@@ -1,7 +1,7 @@
 /*
  * Typography and UI follow sive.rs: Georgia body text at 20px, a 60ch column,
  * a warm paper background, classic blue underlined links, and small grey
- * sans-serif for dates and metadata. Headings use Source Serif 4, standing in
+ * sans-serif for dates and metadata. Headings use Spectral SC, standing in
  * for the custom display face sive.rs uses for its headings.
  */
 
@@ -16,7 +16,10 @@
   --link: #009;
 
   --body: Georgia, "Times New Roman", serif;
-  --heading: "Source Serif 4 Variable", Georgia, serif;
+  /* A small-caps face: capitals stay full size and lowercase letters become
+     slightly shorter capitals, like the headings on sive.rs. */
+  --heading: "Spectral SC", Georgia, serif;
+  --heading-weight: 600;
   --meta: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 
   --measure: 60ch;
@@ -84,7 +87,7 @@ h2,
 h3,
 h4 {
   font-family: var(--heading);
-  font-weight: 700;
+  font-weight: var(--heading-weight);
   line-height: 1.2;
 }
 
@@ -176,7 +179,7 @@ small {
   margin: 0.67em 0 0.25em;
   font-family: var(--heading);
   font-size: 2em;
-  font-weight: 700;
+  font-weight: var(--heading-weight);
   line-height: 1.2;
 }
 
@@ -208,7 +211,7 @@ small {
 /* Shared by the 404 page. */
 .hero__name {
   font-family: var(--heading);
-  font-weight: 700;
+  font-weight: var(--heading-weight);
   font-size: 2em;
   line-height: 1.2;
 }
@@ -333,7 +336,7 @@ small {
 
 .impact__value {
   font-family: var(--heading);
-  font-weight: 700;
+  font-weight: var(--heading-weight);
   font-size: 1.6rem;
   line-height: 1.15;
   font-variant-numeric: lining-nums tabular-nums;
@@ -473,11 +476,6 @@ small {
 
 .book__title {
   font-size: 1.17em;
-}
-
-.book__author {
-  font-weight: 400;
-  color: var(--muted);
 }
 
 .book__meta {
